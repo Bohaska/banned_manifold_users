@@ -49,7 +49,7 @@ async function displayBannedUsers() {
     if (cachedBannedUsers.length > 0) {
       bannedUsers = cachedBannedUsers.filter(user => {
         const createdTime = user.data.createdTime;
-        return createdTime > startDate && createdTime < endDate;
+        return createdTime > startDate && createdTime < endDate && user.data.isBannedFromPosting;
       });
     } else {
       bannedUsers = await fetchBannedUsers(startDate, endDate);
