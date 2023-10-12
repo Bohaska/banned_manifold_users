@@ -31,8 +31,8 @@ async function displayBannedUsers() {
   const loadingElement = document.getElementById('loading');
 
   fetchButton.addEventListener('click', async () => {
-    const startDate = new Date(startDateElement.value).getTime();
-    const endDate = new Date(endDateElement.value).getTime();
+    const startDate = new Date(startDateElement.value + 'T00:00:00Z').getTime();
+    const endDate = new Date(endDateElement.value + 'T00:00:00Z').getTime();
 
     if (isNaN(startDate) || isNaN(endDate)) {
       alert('Please select valid start and end dates.');
