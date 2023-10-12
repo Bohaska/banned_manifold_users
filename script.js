@@ -64,4 +64,3 @@ fetchBannedUsers().then(() => {
   // Call the displayBannedUsers function when the page loads
   window.addEventListener('load', displayBannedUsers);
 });
-
