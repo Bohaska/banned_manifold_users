@@ -1,3 +1,5 @@
+let bannedUsers = [];
+
 // Function to fetch the banned user data
 async function fetchBannedUsers(startDate, endDate) {
   const response = await fetch('https://pxidrgkatumlvfqaxcll.supabase.co/rest/v1/users?select=data', {
@@ -8,7 +10,7 @@ async function fetchBannedUsers(startDate, endDate) {
   });
 
   const data = await response.json();
-  const bannedUsers = data.filter(user => {
+  bannedUsers = data.filter(user => {
     const createdTime = user.data.createdTime;
     return createdTime > startDate && createdTime < endDate && user.data.isBannedFromPosting;
   });
@@ -17,7 +19,7 @@ async function fetchBannedUsers(startDate, endDate) {
 }
 
 // Function to display the banned user data on the webpage
-async function displayBannedUsers() {
+function displayBannedUsers() {
   const startDateElement = document.getElementById('startDate');
   const endDateElement = document.getElementById('endDate');
   const fetchButton = document.getElementById('fetchButton');
@@ -38,11 +40,14 @@ async function displayBannedUsers() {
     bannedCountElement.textContent = '';
     bannedUserListElement.innerHTML = '';
 
-    const bannedUsers = await fetchBannedUsers(startDate, endDate);
+    const filteredUsers = bannedUsers.filter(user => {
+      const createdTime = user.data.createdTime;
+      return createdTime > startDate && createdTime < endDate;
+    });
 
-    bannedCountElement.textContent = bannedUsers.length;
+    bannedCountElement.textContent = filteredUsers.length;
 
-    bannedUsers.forEach(user => {
+    filteredUsers.forEach(user => {
       const listItem = document.createElement('li');
       const link = document.createElement('a');
       link.href = `https://manifold.markets/${user.data.username}`;
