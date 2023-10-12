@@ -11,13 +11,12 @@ async function fetchBannedUsers(startDate, endDate) {
   });
 
   const data = await response.json();
+  // Cache the fetched data
+  cachedBannedUsers = data;
   const bannedUsers = data.filter(user => {
     const createdTime = user.data.createdTime;
     return createdTime > startDate && createdTime < endDate && user.data.isBannedFromPosting;
   });
-
-  // Cache the fetched data
-  cachedBannedUsers = bannedUsers;
 
   return bannedUsers;
 }
