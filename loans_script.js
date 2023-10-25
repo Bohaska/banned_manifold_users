@@ -17,10 +17,6 @@ async function getUserPositions(userId) {
     const headers = {
       'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4aWRyZ2thdHVtbHZmcWF4Y2xsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg5OTUzOTgsImV4cCI6MTk4NDU3MTM5OH0.d_yYtASLzAoIIGdXUBIgRAGLBnNow7JG2SoaNMQ8ySg',
       'Content-Type': 'application/json',
-      'origin': 'https://manifold.markets',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors', 
-      'sec-fetch-site': 'cross-site'
     };
 
     const json_data = {
